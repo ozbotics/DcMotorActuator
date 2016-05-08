@@ -1,3 +1,7 @@
+/** @file DcMotorController.h 
+  *  Copyright (c) 2016 Ozbotics 
+  *  Distributed under the MIT license (see LICENSE)
+  */ 
 #ifndef _DC_MOTOR_CONTROLLER_H
   #define _DC_MOTOR_CONTROLLER_H
   
@@ -5,20 +9,22 @@
 #include <LinkedList.h>
 
 #include "DcMotor.h"
-#include <Actuator.h>
 
 class DcMotor;
 
-class DcMotorController : public Actuator {
+/**
+ * DC Motor Controller
+ *
+ * DC Motor Controller(s) can support a number of Motor Channels (4)
+ * Motor Speed is mangaed via this Controller 
+ *  (by modulating a duty cycle of the speedPin line
+ */
+class DcMotorController  {
   protected:
     byte _speedPin;
-    byte _maxMotors;
-
-    LinkedList<DcMotor*> _motors = LinkedList<DcMotor*>();
-    byte _numMotors = 0;
     
   public:
-    DcMotorController(byte speedPin, byte maxMotors) : _speedPin(speedPin), _maxMotors(maxMotors), Actuator() {
+    DcMotorController(byte speedPin) : _speedPin(speedPin) {
       pinMode(_speedPin, OUTPUT); 
       setSpeed(0);
     }
@@ -26,14 +32,6 @@ class DcMotorController : public Actuator {
     void setSpeed(byte speedAmount) {
       analogWrite(this->_speedPin, speedAmount);
     }
-
-//    DcMotor * addMotor(byte selectPin, byte speedAmount, bool enableLevel=1);
-//    DcMotor * getMotor(byte motorNumber);
-    
-//    byte getNumMotors();
-    
-    virtual void start();
-    virtual void stop();
 
 };
 

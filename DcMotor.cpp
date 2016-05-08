@@ -1,10 +1,10 @@
 #include "DcMotorController.h"
 #include "DcMotor.h"
 
-void DcMotor::enable(bool _enabled) {
+void DcMotor::_setEnabled(bool _enabled) {
   bool pinLevel;
   
-  enabled.setValue(_enabled);
+  //enabled.setValue(_enabled);
   
   if (_enableLevel) {
     pinLevel = _enabled;
@@ -21,9 +21,9 @@ void DcMotor::enable(bool _enabled) {
 }
 
 void DcMotor::start() {
-  enable(true);  
+  _setEnabled(true);  
 }
 
 void DcMotor::stop() {
-  enable(false);  
+  _setEnabled(false);  
 }
