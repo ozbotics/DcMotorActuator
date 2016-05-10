@@ -21,13 +21,13 @@ class LoadSensingDcMotorController : public DcMotorController {
     static const int _defaultSampleDuration = 2; /**< protected variable _defaultSampleDuration The sample period in milliseconds */ 
     
   public:
-  
    /**
     * Constructor
     *
     * @param loadSensePin The Analog Input pin that connects to the motor load sensing circuit
+    * @param speedPin The Digital Output pin that connects to Speed Control (Rnable) pin on the Motor Controller
     */
-    LoadSensingDcMotorController(byte loadSensePin, byte speedPin, byte maxMotors) : DcMotorController(speedPin, maxMotors) {
+    LoadSensingDcMotorController(byte loadSensePin, byte speedPin) : DcMotorController(speedPin) {
       _loadSensor = new MotorLoadSensor(loadSensePin);
     }
     

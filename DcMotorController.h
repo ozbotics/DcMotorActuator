@@ -21,14 +21,24 @@ class DcMotor;
  */
 class DcMotorController  {
   protected:
-    byte _speedPin;
+    byte _speedPin; /**< protected variable _speedPin The Digital Output pin that connects to Speed Control (Rnable) pin on the Motor Controller */ 
     
   public:
+  /**
+    * Constructor
+    *
+    * @param speedPin The Digital Output pin that connects to Speed Control (Rnable) pin on the Motor Controller
+    */
     DcMotorController(byte speedPin) : _speedPin(speedPin) {
       pinMode(_speedPin, OUTPUT); 
       setSpeed(0);
     }
     
+   /**
+    * set the Speed
+    *
+    * @param speedAmount The speed from 0 to 255
+    */
     void setSpeed(byte speedAmount) {
       analogWrite(this->_speedPin, speedAmount);
     }
